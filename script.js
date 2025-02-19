@@ -1,9 +1,6 @@
 const body = document.querySelector("body");
 
-body.addEventListener("mousemove", (e) => {
-  const xPos = e.offsetX;
-  const yPos = e.offsetY;
-
+function createEffect(xPos, yPos) {
   const span = document.createElement("span");
 
   span.style.left = `${xPos}px`;
@@ -18,4 +15,18 @@ body.addEventListener("mousemove", (e) => {
   setTimeout(() => {
     span.remove();
   }, 3000);
+}
+
+body.addEventListener("mousemove", (e) => {
+  createEffect(e.offsetX, e.offsetY);
+});
+
+body.addEventListener("touchstart", (e) => {
+  const touch = e.touches[0];
+  createEffect(touch.clientX, touch.clientY);
+});
+
+body.addEventListener("touchmove", (e) => {
+  const touch = e.touches[0];
+  createEffect(touch.clientX, touch.clientY);
 });
